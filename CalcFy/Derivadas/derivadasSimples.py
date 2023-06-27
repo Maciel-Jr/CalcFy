@@ -1,12 +1,18 @@
 import random
 from sympy import symbols, diff
-from ..outros.positivo_negativo import positivoNegativo
 
 #https://www.sympy.org/pt/features.html
 # Defina os limites do intervalo de integração
+def positivoNegativo():
+    operacao = random.choice(['positivo', 'negativo'])
+    return operacao
+
 def derivadasSimples(quantidade,ativoResposta=False):
     
     operacao = positivoNegativo()
+
+    listaFuncao = []
+    listaDerivada = []
 
 
     # Gere cálculos de integrais aleatórias
@@ -24,17 +30,17 @@ def derivadasSimples(quantidade,ativoResposta=False):
             function = a_coef * x**expoente - b_coef * x + c_coef
 
 
-        if ativoResposta == True:
-                integral = diff(function, (x))
-                print("Função:", function)
-                print("Derivada:", integral)
-                print()
-        else:
-                integral = diff(function, (x))
-                print("Função:", function)
-                print()
+        derivada = diff(function, (x))
+        listaFuncao.append(function)
+        listaDerivada.append(derivada)
+
+        
+    if ativoResposta:
+        return listaFuncao, listaDerivada
+    else:
+        return listaFuncao
        
        
         
 
-derivadasSimples(5, ativoResposta=True)
+print(derivadasSimples(5, ativoResposta=True))
