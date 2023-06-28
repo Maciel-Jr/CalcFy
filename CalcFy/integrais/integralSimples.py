@@ -1,10 +1,7 @@
 import random
 from sympy import symbols, integrate
+from auxiliar.positivoNegativo import positivoNegativo
 
-
-def positivoNegativo():
-    operacao = random.choice(['positivo', 'negativo'])
-    return operacao
 
 #https://www.sympy.org/pt/features.html
 

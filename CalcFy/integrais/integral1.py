@@ -1,10 +1,7 @@
 import random
 from sympy import symbols, integrate, limit
+from auxiliar.positivoNegativo import positivoNegativo
 
-
-def positivoNegativo():
-    operacao = random.choice(['positivo', 'negativo'])
-    return operacao
 
 #https://www.sympy.org/pt/features.html
 
@@ -39,13 +36,16 @@ def integrais1(quantidade,ativoResposta=False, ativoLimites=False):
 
         if operacao == 'positivo':
             functionU = a_coef * x**expoente + b_coef * x + c_coef
-            functionV = f_coef * x**expoente + e_coef * x + f_coef
+            functionV = d_coef * x**expoente + e_coef * x + f_coef
         else:
             functionU = a_coef * x**expoente + b_coef * x + c_coef
-            functionV = f_coef * x**expoente + e_coef * x + f_coef
+            functionV = d_coef * x**expoente + e_coef * x + f_coef
 
         integralU = integrate(functionU)
         integralV = integrate(functionV)
+
+
+       
 
         function = functionU*functionV
         integralResult = integralU * functionV + functionU * integralV
@@ -60,7 +60,6 @@ def integrais1(quantidade,ativoResposta=False, ativoLimites=False):
         listaLimiteA.append(Limite_a)
         listaLimiteB.append(Limite_b)
 
-
     if ativoResposta:
         if ativoLimites:
             return listaFuncao, listaIntegral, listaLimiteA, listaLimiteB
@@ -71,9 +70,13 @@ def integrais1(quantidade,ativoResposta=False, ativoLimites=False):
             return listaFuncao, listaLimiteA, listaLimitB
         else:
             return listaFuncao
+  
 
        
        
         
 
 print(integrais1(1, ativoResposta=True))
+
+
+
