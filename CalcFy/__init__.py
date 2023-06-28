@@ -1,11 +1,31 @@
+from flask import Flask, jsonify, request
 from integrais.integralSimples import integraisSimples
-from Derivadas.derivadasSimples import derivadasSimples
 
 
-integrais = integraisSimples(5, ativoResposta=True, ativoLimites=True)
-derivadas = derivadasSimples(5, ativoResposta=True)
+    
+app = Flask(__name__)
 
-print(f"Função: {integrais[0]}")
-print(f"Limites Superiores: {integrais[2]}")
-print(f"Limites inferiores: {integrais[3]}")
-print(f"Função Integrada: {integrais[1]}")
+
+
+@app.route('/api/integral/<quantidade>/<ativoResposta>/<AtivoLimites>', methods=['GET'])
+def integral(quantidade, ativoResposta=False, AtivoLimites=False):
+
+    quantidade = int(quantidade)
+    ativoResposta = ativoResposta.lower() == 'true'
+    AtivoLimites = AtivoLimites.lower() == 'true'
+
+    quantidade = int(quantidade)
+    resultado = integraisSimples(quantidade, ativoResposta, AtivoLimites)
+
+    mensagem = {
+        'Funcoes': resultado[0],
+        'Resultado': resultado[1],
+        'Limites Superiores': resultado[2],
+        'Limites Inferiores': resultado[3]
+    }
+
+    return jsonify(mensagem)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

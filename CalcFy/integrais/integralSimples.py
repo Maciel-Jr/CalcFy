@@ -3,7 +3,7 @@ from sympy import symbols, integrate
 from integrais.auxiliar.positivoNegativo import positivoNegativo
 
 
-#https://www.sympy.org/pt/features.html
+#https://www.sympy.org/pt/features.html  
 
 
 def integraisSimples(quantidade,ativoResposta=False, ativoLimites=False):
@@ -37,12 +37,19 @@ def integraisSimples(quantidade,ativoResposta=False, ativoLimites=False):
 
 
         if ativoLimites: integral = integrate(function, (x, Limite_a, Limite_b))
-    
-        listaFuncao.append(function)
-        listaIntegral.append(integral)
-        listaLimiteA.append(Limite_a)
-        listaLimiteB.append(Limite_b)
 
+        integral = integrate(function, (x))
+    
+        listaFuncao.append(str(function))
+        listaIntegral.append(str(integral))
+        listaLimiteA.append(str(Limite_a))
+        listaLimiteB.append(str(Limite_b))
+
+        
+
+   
+    
+    
     if ativoResposta == True:
         if ativoLimites == True:
             return listaFuncao, listaIntegral, listaLimiteA, listaLimiteB
@@ -53,7 +60,10 @@ def integraisSimples(quantidade,ativoResposta=False, ativoLimites=False):
             return listaFuncao,listaLimiteA, listaLimiteB
         else:
             return listaFuncao
-        
+
+    
+
+
 
        
        
