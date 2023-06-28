@@ -1,6 +1,6 @@
 import random
 from sympy import symbols, integrate, limit
-from auxiliar.positivoNegativo import positivoNegativo
+from integrais.auxiliar.positivoNegativo import positivoNegativo
 
 
 #https://www.sympy.org/pt/features.html
@@ -75,8 +75,6 @@ def integrais1(quantidade,ativoResposta=False, ativoLimites=False):
        
        
         
-
-print(integrais1(1, ativoResposta=True))
 
 
 

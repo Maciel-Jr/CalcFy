@@ -1,6 +1,6 @@
 import random
 from sympy import symbols, diff
-from auxiliar.positivoNegativo import positivoNegativo
+from Derivadas.auxiliar.positivoNegativo import positivoNegativo
 
 #https://www.sympy.org/pt/features.html
 # Defina os limites do intervalo de integração
@@ -44,4 +44,4 @@ def derivadasSimples(quantidade,ativoResposta=False):
        
         
 
-print(derivadasSimples(5, ativoResposta=True))
+

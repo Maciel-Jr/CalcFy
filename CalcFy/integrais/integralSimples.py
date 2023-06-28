@@ -1,6 +1,6 @@
 import random
 from sympy import symbols, integrate
-from auxiliar.positivoNegativo import positivoNegativo
+from integrais.auxiliar.positivoNegativo import positivoNegativo
 
 
 #https://www.sympy.org/pt/features.html
@@ -47,14 +47,16 @@ def integraisSimples(quantidade,ativoResposta=False, ativoLimites=False):
         if ativoLimites == True:
             return listaFuncao, listaIntegral, listaLimiteA, listaLimiteB
         else:
-            return listaFuncao, listaIntegral 
+            return listaFuncao, listaIntegral
     else:
         if ativoLimites == True:
             return listaFuncao,listaLimiteA, listaLimiteB
         else:
             return listaFuncao
+        
+
        
        
         
 
-print(integraisSimples(5, ativoResposta=True, ativoLimites=True))
+
