@@ -1,28 +1,51 @@
 from flask import Flask, jsonify, request
 from integrais.integralSimples import integraisSimples
+from flask_cors import CORS
 
 
     
 app = Flask(__name__)
+CORS(app, origins='*')
 
+@app.route('/CalcFy', methods=['GET'])
+def CalcFy():
+    return '<a href="http://127.0.0.1:5000/api/integral/Quantidade=1&ativoResposta=False&AtivoLimite=False"><button>Meu Botão</button></a>'
 
-
-@app.route('/api/integral/<quantidade>/<ativoResposta>/<AtivoLimites>', methods=['GET'])
-def integral(quantidade, ativoResposta=False, AtivoLimites=False):
+@app.route('/api/integral/Quantidade=<quantidade>&ativoResposta=<ativoResposta>&AtivoLimite=<AtivoLimite>', methods=['GET'])
+def integral(quantidade, ativoResposta=False, AtivoLimite=False):
 
     quantidade = int(quantidade)
     ativoResposta = ativoResposta.lower() == 'true'
-    AtivoLimites = AtivoLimites.lower() == 'true'
+    AtivoLimite = AtivoLimite.lower() == 'true'
 
     quantidade = int(quantidade)
-    resultado = integraisSimples(quantidade, ativoResposta, AtivoLimites)
+    resultado = integraisSimples(quantidade, ativoResposta, AtivoLimite)
 
-    mensagem = {
-        'Funcoes': resultado[0],
-        'Resultado': resultado[1],
-        'Limites Superiores': resultado[2],
-        'Limites Inferiores': resultado[3]
-    }
+    if ativoResposta == True:
+        if AtivoLimite == True:
+            mensagem = {
+                'Funcoes': resultado[0],
+                'Resultado': resultado[1],
+                'Limites Superiores': resultado[2],
+                'Limites Inferiores': resultado[3]
+            }
+        else:
+            mensagem = {
+                'Funcoes': resultado[0],
+                'Resultado': resultado[1]
+            }
+    else:
+        if AtivoLimite == True:
+         mensagem = {
+                'Funcoes': resultado[0],
+                'Limites Superiores': resultado[1],
+                'Limites Inferiores': resultado[2]
+            }
+        else:
+            mensagem = {
+                'Funcoes': resultado
+            }
+   
 
     return jsonify(mensagem)
 

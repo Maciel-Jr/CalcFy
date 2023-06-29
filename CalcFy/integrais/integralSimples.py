@@ -20,6 +20,10 @@ def integraisSimples(quantidade,ativoResposta=False, ativoLimites=False):
         Limite_a = random.randint(-5, 6)
         Limite_b= random.randint(-5, 6)
 
+
+        if Limite_b > Limite_a: Limite_a, Limite_b = Limite_b, Limite_a
+
+
         x = symbols('x')
         a_coef = random.randint(-10, 10)
         b_coef = random.randint(-10, 10)
@@ -34,11 +38,11 @@ def integraisSimples(quantidade,ativoResposta=False, ativoLimites=False):
         
 
         integrate(function, (x))
-
+        integral = integrate(function, (x))
 
         if ativoLimites: integral = integrate(function, (x, Limite_a, Limite_b))
 
-        integral = integrate(function, (x))
+        
     
         listaFuncao.append(str(function))
         listaIntegral.append(str(integral))
@@ -60,6 +64,7 @@ def integraisSimples(quantidade,ativoResposta=False, ativoLimites=False):
             return listaFuncao,listaLimiteA, listaLimiteB
         else:
             return listaFuncao
+
 
     
 
